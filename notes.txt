@@ -1,0 +1,27 @@
+// "type": "module",
+
+
+
+{
+  "platformName": "Android",
+  "appium:platformVersion": "14.0",
+  "appium:deviceName": "Pixel 7",
+  "appium:app": "/home/p10/Documents/appium practice/app/android.wdio.native.app.v1.0.8.apk",
+  "appium:automationName": "UIAutomator2"
+}
+
+  Scenario: User tries to login
+    Given user is on the login page
+    When user enters <username> and <password>
+    Then user gets the notification <notification>
+
+    Examples:
+      | username | password | notification       |
+      |  12@2.nl | 12345678 | You are logged in! |
+
+  Scenario: User tries to fill in a form
+    Given user is on the forms page
+    When user enters <text> in the input field
+    Then user toggles the switch
+    Then user selects an item from the dropdown
+    Then user clicks on the active button
