@@ -25,3 +25,190 @@
     Then user toggles the switch
     Then user selects an item from the dropdown
     Then user clicks on the active button
+
+
+const {$} = require('@wdio/globals');
+// const { remote } = require('webdriverio');
+
+// const opts = {
+//     port: 4724,
+//     capabilities: {
+//         platformName: "Android",
+//         'appium:deviceName': 'Pixel 7',
+//         'appium:platformVersion': '14.0',
+//         'appium:automationName': 'UiAutomator2',
+//         "appium:app": "/home/p10/Documents/appium practice/app/android.wdio.native.app.v1.0.8.apk",
+//     }
+// };
+
+// let client;
+
+const screen = "//*[@content-desc='Swipe-screen']";
+const swipe = "//*[@text='Swipe']";
+const carousel = "//*[@content-desc='Carousel']";
+
+class Swipe{
+
+    async goToSwipePage(){
+        await $(swipe).click();
+    }
+
+    async swipeLeft(){
+        const element = await $(carousel);
+        const location = await element.getLocation();
+        const size = await element.getSize();
+        const startX = location.x + size.width - 1;
+        const endX = location.x + 1;
+        const startY = location.y + (size.height / 2);
+    
+        await driver.touchAction([
+            { action: 'press', x: startX, y: startY },
+            { action: 'wait', ms: 1000 },
+            { action: 'moveTo', x: endX, y: startY },
+            'release'
+    ]);
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Pause for 5 seconds
+
+    }
+
+    async swipeRight(){
+        const element = await $(carousel);
+        const location = await element.getLocation();
+        const size = await element.getSize();
+        const startX = location.x + 1;
+        const endX = location.x + size.width - 1;
+        const startY = location.y + (size.height / 2);
+        
+        await driver.touchAction([
+            { action: 'press', x: startX, y: startY },
+            { action: 'wait', ms: 1000 },
+            { action: 'moveTo', x: endX, y: startY },
+            'release'
+    ]);
+
+    }
+
+
+    // async swipeLeft(){
+const {$} = require('@wdio/globals');
+// const { remote } = require('webdriverio');
+
+// const opts = {
+//     port: 4724,
+//     capabilities: {
+//         platformName: "Android",
+//         'appium:deviceName': 'Pixel 7',
+//         'appium:platformVersion': '14.0',
+//         'appium:automationName': 'UiAutomator2',
+//         "appium:app": "/home/p10/Documents/appium practice/app/android.wdio.native.app.v1.0.8.apk",
+//     }
+// };
+
+// let client;
+
+const screen = "//*[@content-desc='Swipe-screen']";
+const swipe = "//*[@text='Swipe']";
+const carousel = "//*[@content-desc='Carousel']";
+
+class Swipe{
+
+    async goToSwipePage(){
+        await $(swipe).click();
+    }
+
+    async swipeLeft(){
+        const element = await $(carousel);
+        const location = await element.getLocation();
+        const size = await element.getSize();
+        const startX = location.x + size.width - 1;
+        const endX = location.x + 1;
+        const startY = location.y + (size.height / 2);
+    
+        await driver.touchAction([
+            { action: 'press', x: startX, y: startY },
+            { action: 'wait', ms: 1000 },
+            { action: 'moveTo', x: endX, y: startY },
+            'release'
+    ]);
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Pause for 5 seconds
+
+    }
+
+    async swipeRight(){
+        const element = await $(carousel);
+        const location = await element.getLocation();
+        const size = await element.getSize();
+        const startX = location.x + 1;
+        const endX = location.x + size.width - 1;
+        const startY = location.y + (size.height / 2);
+        
+        await driver.touchAction([
+            { action: 'press', x: startX, y: startY },
+            { action: 'wait', ms: 1000 },
+            { action: 'moveTo', x: endX, y: startY },
+            'release'
+    ]);
+
+    }
+
+
+    // async swipeLeft(){
+
+    // }
+
+    // async swipeRight(){
+
+    // }
+
+}
+
+module.exports = new Swipe();
+
+}
+
+module.exports = new Swipe();
+
+
+
+
+
+
+
+
+
+
+
+Scenario: Test the login functionality
+    Given user is on the homepage
+    When user clicks the login button
+    Then user is redirected to the login page
+
+  Scenario: User tries to login
+    Given user is on the login page
+    When user types username <username> and password <password>
+    Then user gets the notification <notification>
+
+    Examples:
+      | username | password | notification       |
+      |  12@2.nl | 12345678 | You are logged in! |
+
+  Scenario: User tries to sign up
+    Given user is on the sign up page
+    When user enters <email> and <pass>
+    Then user clicks sign up
+    Then user gets the notif <notif>
+
+    Examples:
+      | email         | pass       | notif                            |
+      | hello@p10.com | 1234567890 | You have successfully signed up! |
+
+  Scenario: User tries to fill in a form
+    Given user is on the forms page
+    When user enters <text> in the input field
+    Then user toggles the switch
+    Then user selects an item from the dropdown
+    Then user clicks on the active button
+
+    Examples:
+      | text  |
+      | Hello |

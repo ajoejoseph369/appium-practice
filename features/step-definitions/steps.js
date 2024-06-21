@@ -25,7 +25,7 @@ Given(/^user is on the login page$/, async () => {
 	await Login.checkRedirectionToLoginPage();
 });
 
-When(/^user enters (.*) and (.*)$/, async (username,password) => {
+When(/^user types username (.*) and password (.*)$/, async (username,password) => {
 	await Login.inputCredentials(username,password);
 });
 
@@ -68,10 +68,29 @@ Given(/^user is on the swipe page$/, async () => {
 });
 
 When(/^user swipes$/, async () => {
-	await Swipe.swipeDown();
-	await Swipe.swipeUp();
+	// await Swipe.swipeLeft();
+	// await Swipe.swipeRight();
+	await Swipe.scrollDown();
 });
 
 Then(/^success$/, async () => {
 	return true;
+});
+
+//signup
+
+Given(/^user is on the sign up page$/, async () => {
+	await Login.goToSignUp();
+});
+
+When(/^user enters (.*) and (.*)$/, async (email,pass) => {
+	await Login.enterCredentials(email,pass);
+});
+
+Then(/^user clicks sign up$/, async () => {
+	await Login.clickSignUp();
+});
+
+Then(/^user gets the notif (.*)$/, async (notif) => {
+	await Login.checkSignUp(notif);
 });

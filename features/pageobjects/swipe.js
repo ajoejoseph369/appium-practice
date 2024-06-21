@@ -1,21 +1,10 @@
-const {$} = require('@wdio/globals');
-const { remote } = require('webdriverio');
-
-const opts = {
-    port: 4724,
-    capabilities: {
-        platformName: "Android",
-        'appium:deviceName': 'Pixel 7',
-        'appium:platformVersion': '14.0',
-        'appium:automationName': 'UiAutomator2',
-        "appium:app": "/home/p10/Documents/appium practice/app/android.wdio.native.app.v1.0.8.apk",
-    }
-};
-
-let client;
+const {$,driver} = require('@wdio/globals');
 
 const screen = "//*[@content-desc='Swipe-screen']";
 const swipe = "//*[@text='Swipe']";
+const carousel = "//*[@content-desc='Carousel']";
+const bottomLogo = "//*[@content-desc ='//*[@content-desc ='WebdriverIO logo']";
+
 
 class Swipe{
 
@@ -23,39 +12,27 @@ class Swipe{
         await $(swipe).click();
     }
 
-    async swipeUp(){
-        client = await remote(opts);
-        await client.touchPerform([
-            { action: 'press', options: { x: 500, y: 1500 } },
-            { action: 'wait', options: { ms: 200 } },
-            { action: 'moveTo', options: { x: 500, y: 500 } },
-            { action: 'release' }
-        ]);
-        await new Promise(resolve => setTimeout(resolve, 2000)); // Pause for 5 seconds
+    async scrollDown(){
+        // const scrollObject = new UiSelector().description("Swipe-screen");
+        // await driver.execute("mobile: scroll", {
+        //     direction: "down", // or "up" for scrolling up
+        //     element: {},
+        // });
 
+        // await driver
+        //     .action('pointer')
+        //     .move({ x: 250, y: 600 })
+        //     .down()
+        //     .pause(100)
+        //     .move({ duration: 500, x: 250, y: 150 })
+        //     .up()
+        //     .perform();
+            
+        //await driver.executeScript('window.scrollTo(0, document.body.scrollHeight)');
+        //await browser.scroll(0,650);
+        await (await $(bottomLogo)).scrollIntoView();
+        await browser.pause(4000);
     }
-
-    async swipeDown(){
-        client = await remote(opts);
-        await client.touchPerform([
-            { action: 'press', options: { x: 500, y: 500 } },
-            { action: 'wait', options: { ms: 200 } },
-            { action: 'moveTo', options: { x: 500, y: 1500 } },
-            { action: 'release' }
-        ]);
-        await new Promise(resolve => setTimeout(resolve, 2000)); // Pause for 5 seconds
-
-    }
-
-
-    // async swipeLeft(){
-
-    // }
-
-    // async swipeRight(){
-
-    // }
-
 }
 
 module.exports = new Swipe();
