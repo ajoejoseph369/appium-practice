@@ -212,3 +212,59 @@ Scenario: Test the login functionality
     Examples:
       | text  |
       | Hello |
+
+
+async scrolling(side) {
+        let direction = side.toLowerCase()
+        var { width, height } = await browser.getWindowSize()
+        var startX
+        var startY
+        var endX
+        var endY
+        if (direction === "left") {
+            startX = parseInt(width * 0.9)
+            startY = parseInt(height * 0.5)
+            endX = parseInt(width * 0.1)
+            endY = parseInt(height * 0.5)
+        }
+
+        else if (direction === "right") {
+            startX = parseInt(width * 0.1)
+            startY = parseInt(height * 0.5)
+            endX = parseInt(width * 0.9)
+            endY = parseInt(height * 0.5)
+        }
+
+        else if (direction === "up") {
+            startX = parseInt(width * 0.5)
+            startY = parseInt(height * 0.1)
+            endX = parseInt(width * 0.5)
+            endY = parseInt(height * 0.9)
+        }
+
+        else if (direction === "down") {
+            startX = parseInt(width * 0.5)
+            startY = parseInt(height * 0.9)
+            endX = parseInt(width * 0.5)
+            endY = parseInt(height * 0.1)
+        }
+        await browser.touchAction([
+            { action: 'press', x: startX, y: startY },
+            { action: 'wait', ms: 2000 },
+            { action: 'moveTo', x: endX, y: endY },
+            'release',
+        ]);
+    },
+
+
+
+async scrollToElement(selector, selectorName) {
+        Logger.info(`Scrolling to the ${selectorName}`)
+        let elementVisibilty
+        do {
+            elementVisibilty = await $(selector).isExisting()
+            if (elementVisibilty == false) {
+                await this.scrolling('down')
+            }
+        } while (elementVisibilty === false)
+    },

@@ -13,24 +13,15 @@ class Swipe{
     }
 
     async scrollDown(){
-        // const scrollObject = new UiSelector().description("Swipe-screen");
-        // await driver.execute("mobile: scroll", {
-        //     direction: "down", // or "up" for scrolling up
-        //     element: {},
-        // });
-
-        // await driver
-        //     .action('pointer')
-        //     .move({ x: 250, y: 600 })
-        //     .down()
-        //     .pause(100)
-        //     .move({ duration: 500, x: 250, y: 150 })
-        //     .up()
-        //     .perform();
-            
-        //await driver.executeScript('window.scrollTo(0, document.body.scrollHeight)');
-        //await browser.scroll(0,650);
-        await (await $(bottomLogo)).scrollIntoView();
+        // const scrollableContainer = await $(By.scrollable(true));
+        // await scrollableContainer.scrollUntil(Direction.DOWN, until.scrollFinished(Direction.DOWN));
+        const size = await driver.getWindowSize();
+        const startX = size.width / 2;
+        // Start from a point near the top of the screen (adjust as needed)
+        const startY = size.height * 0.1;
+        // End at the bottom of the screen
+        const endY = size.height * 0.9;
+        await driver.touchPerform([{ action: 'swipe', options: { x: startX, y: startY, duration: 1500, direction: 'down' } }]);
         await browser.pause(4000);
     }
 }
