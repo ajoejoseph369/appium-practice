@@ -1,8 +1,6 @@
 Feature: Test the functionality of the app
 
-  
-
-  Scenario: User tries scrolling
-    Given user is on the swipe page
-    When user swipes
-    Then success
+  Scenario: user tries drag and drop functionality
+    Given user is on the drag and drop page
+    When user drags and drops tiles
+    Then operation is complete

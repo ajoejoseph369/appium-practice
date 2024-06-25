@@ -4,7 +4,7 @@ const Homepage = require('../pageobjects/page.js');
 const Login = require('../pageobjects/loginpage.js');
 const Forms = require('../pageobjects/forms.js');
 const Swipe = require('../pageobjects/swipe.js');
-
+const Drag = require('../pageobjects/drag.js');
 
 //homepage
 Given(/^user is on the homepage$/, async () => {
@@ -93,4 +93,20 @@ Then(/^user clicks sign up$/, async () => {
 
 Then(/^user gets the notif (.*)$/, async (notif) => {
 	await Login.checkSignUp(notif);
+});
+
+
+//drag and drop
+
+
+Given(/^user is on the drag and drop page$/, async () => {
+	await Drag.goToDragAndDropPage();
+});
+
+When(/^user drags and drops tiles$/, async () => {
+	await Drag.dragAndDrop();
+});
+
+Then(/^operation is complete$/, async () => {
+	await Drag.checkCompletion();
 });

@@ -268,3 +268,47 @@ async scrollToElement(selector, selectorName) {
             }
         } while (elementVisibilty === false)
     },
+
+
+async dragAndDrop(){
+        await(await $(dragl1)).dragAndDrop(await $(dropl1));
+        browser.pause(2500);
+        // this.checkDrop(dragl1,dropl1);
+
+        await(await $(dragc1)).dragAndDrop(await $(dropc1));
+        browser.pause(2500);
+        // this.checkDrop(dragc1,dropc1);
+
+        await(await $(dragr1)).dragAndDrop(await $(dropr1));
+        browser.pause(2500);
+        // this.checkDrop(dragr1,dropr1);
+
+        await(await $(dragl2)).dragAndDrop(await $(dropl2));
+        browser.pause(2500);
+        // this.checkDrop(dragl2,dropl2);
+
+        await(await $(dragc2)).dragAndDrop(await $(dropc2));
+        browser.pause(2500);
+        // this.checkDrop(dragc2,dropc2);
+
+        await(await $(dragr2)).dragAndDrop(await $(dropr2));
+        browser.pause(2500);
+        // this.checkDrop(dragr2,dropr2);
+
+        await(await $(dragl3)).dragAndDrop(await $(dropl3));
+        browser.pause(2500);
+        // this.checkDrop(dragl3,dropl3);
+
+        await(await $(dragc3)).dragAndDrop(await $(dropc3));
+        browser.pause(2500);
+        // this.checkDrop(dragc3,dropc3);
+
+        await(await $(dragr3)).dragAndDrop(await $(dropr3));
+        browser.pause(2500);
+        // this.checkDrop(dragr3,dropr3);
+
+
+        browser.pause(5000);
+    }
+
+    
