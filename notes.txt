@@ -213,6 +213,11 @@ Scenario: Test the login functionality
       | text  |
       | Hello |
 
+  Scenario: user tries drag and drop functionality
+    Given user is on the drag and drop page
+    When user drags and drops tiles
+    Then operation is complete
+
 
 async scrolling(side) {
         let direction = side.toLowerCase()

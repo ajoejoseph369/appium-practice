@@ -68,9 +68,8 @@ Given(/^user is on the swipe page$/, async () => {
 });
 
 When(/^user swipes$/, async () => {
-	// await Swipe.swipeLeft();
-	// await Swipe.swipeRight();
-	await Swipe.scrollDown();
+	
+	await Swipe.swipeToEndOfCarousel();
 });
 
 Then(/^success$/, async () => {
